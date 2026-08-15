@@ -1,0 +1,14 @@
+[[accounts]]
+[account]
+name=hotmail
+server=HOTMAIL_SERVER
+username=HOTMAIL_USERNAME
+password=HOTMAIL_PASSWORD
+inbox=INBOX
+
+[account]
+name=hotmail
+server=GMAIL_SERVER
+username=GMAIL_USERNAME
+password=GMAIL_PASSWORD
+inbox=INBOX
