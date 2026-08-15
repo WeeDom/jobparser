@@ -61,3 +61,4 @@ cython_debug/
 tempCodeRunnerFile.py
 *.workspace
 
+.msal_cache
