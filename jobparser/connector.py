@@ -1,17 +1,13 @@
 #! /usr/bin/env python
-
-import email
-from imapclient import IMAPClient
-from dotenv import load_dotenv
 import os
+import msal
+from dotenv import load_dotenv
+from ms import IMAPMSClient
 
 load_dotenv()
 
-server = IMAPClient("imap.gmail.com", use_uid=True)
-server.login(os.getenv("GMAIL_USERNAME"), os.getenv('GMAIL_PASSWORD'))
-server.select_folder("INBOX", readonly=True)
+if __name__ == "__main__":
+    msclient = IMAPMSClient()
+    msclient.connect()
+    print("Hello, World")
 
-messages = server.search("UNSEEN")
-for uid, message_data in server.fetch(messages, "RFC822").items():
-    email_message = email.message_from_bytes(message_data[b"RFC822"])
-    print(uid, email_message.get("From"), email_message.get("Subject"))
