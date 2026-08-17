@@ -2,12 +2,20 @@ from imapclient import IMAPClient
 
 
 class EmailClient(IMAPClient):
-    def fetch(self):
-        if not self.server:
-            self._connect()
+    def __init__(self, *args, **kwargs):
+        self._authenticated = False
+        super().__init__(*args, **kwargs)
 
-        self._fetch()
+    def ensure_authenticated(self):
+        if not self._authenticated:
+            self._connect()
+            self._authenticated = True
 
     def connect(self):
-        self._connect()
+        self.ensure_authenticated()
         return self
+
+    def fetch(self, messages, data, modifiers=None):
+        self.ensure_authenticated()
+        import pdb; pdb.set_trace() # noqa E702
+        return super().fetch(messages, data, modifiers)
