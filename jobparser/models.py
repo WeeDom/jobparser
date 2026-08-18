@@ -17,5 +17,4 @@ class EmailClient(IMAPClient):
 
     def fetch(self, messages, data, modifiers=None):
         self.ensure_authenticated()
-        import pdb; pdb.set_trace() # noqa E702
         return super().fetch(messages, data, modifiers)

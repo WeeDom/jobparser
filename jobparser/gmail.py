@@ -17,13 +17,11 @@ class IMAPGmailClient(EmailClient):
     def _connect(self):
         self.login(IMAP_USERNAME, IMAP_PASSWORD)
 
-    def fetch_job_emails(self, search_criteria=None):
+    def fetch_job_emails(self, search_criteria):
         """Fetch unread messages that are likely to contain job data."""
-        import pdb; pdb.set_trace() # noqa E702
         self.ensure_authenticated()
         self.select_folder("jobparser")
-        criteria = search_criteria or ["FROM", "Indeed"]
-        message_ids = self.search(criteria)
+        message_ids = self.search(search_criteria)
 
         if not message_ids:
             print("no messages found")
